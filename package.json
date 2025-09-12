@@ -10,7 +10,8 @@
     "check:format": "biome format --write ./",
     "check:imports": "biome check --formatter-enabled=false --linter-enabled=false --write ./",
     "check:ts": "tsc --noEmit",
-    "check:all": "pnpm check:imports && pnpm check:format && pnpm check:lint && pnpm check:ts"
+    "check:all": "pnpm check:imports && pnpm check:format && pnpm check:lint && pnpm check:ts",
+    "prepare": "husky install"
   },
   "dependencies": {
     "next": "15.5.3",
@@ -23,6 +24,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "husky": "^8.0.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

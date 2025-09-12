@@ -36,7 +36,11 @@
         "noUnknownAtRules": "off"
       },
       "nursery": {
-        "useSortedClasses": "info"
+        "useSortedClasses": {
+          "fix": "safe",
+          "level": "info",
+          "options": {}
+        }
       }
     }
   },
