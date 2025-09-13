@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/nextjs'
+import "/home/letizia/OnlyBooksFrontend/src/app/globals.css"
 
 const preview: Preview = {
   parameters: {
