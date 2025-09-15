@@ -1,3 +1,5 @@
+import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
+
 export type CheckboxProps = {
   label: string;
   checked: boolean;
@@ -9,9 +11,14 @@ export const Checkbox = ({ label, checked, onChange }: CheckboxProps) => {
     onChange?.(e.target.checked);
   };
   return (
-    <label>
+    <label className="flex cursor-pointer items-center gap-1">
       <input type="checkbox" checked={checked} onChange={handleChange} className="hidden" />
-      <span>{label}</span>
+      {checked === false ? (
+        <ImCheckboxUnchecked className="text-gray-400" />
+      ) : (
+        <ImCheckboxChecked className="text-purple-800" />
+      )}
+      <span className="font-medium text-gray-400">{label}</span>
     </label>
   );
 };
