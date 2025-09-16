@@ -1,4 +1,4 @@
-import { use, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoLogOutOutline, IoPersonCircleOutline } from "react-icons/io5";
 import { OptionsDropdown } from "../../atoms/OptionsDropdown/OptionsDropdown";
 
