@@ -20,7 +20,10 @@ export const OptionsDropdown = ({ options, width = "max-w-fit" }: OptionsDropdow
           return index === options.length - 1;
         };
         return (
-          <div key={index} className={`${!isLast(index) && "border-b border-b-gray-400"} p-1`}>
+          <div
+            key={index}
+            className={`${!isLast(index) && "border-b border-b-gray-400"} p-1 hover:underline`}
+          >
             <a href={option.href}>{option.label}</a>
           </div>
         );
