@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { IoCameraSharp, IoImagesSharp } from "react-icons/io5";
 import { LuUpload } from "react-icons/lu";
@@ -32,26 +32,12 @@ export const ImageUpload = ({ variant, label }: ImageUploadProps) => {
   ];
 
   const [showDropdown, setShowDropdown] = useState(false);
-  const containerRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setShowDropdown(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   return (
     <div className="relative">
       <button
         type="button"
-        ref={containerRef}
-        onClick={() => setShowDropdown(true)}
+        onClick={() => setShowDropdown(!showDropdown)}
         className="relative flex aspect-square w-40 flex-col items-center justify-center rounded-2xl bg-gray-300 text-black"
       >
         {variant === "specific" && <LuUpload className="text-2xl" />}{" "}

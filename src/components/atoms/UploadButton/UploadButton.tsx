@@ -1,13 +1,9 @@
 import Link from "next/link";
 import { LuUpload } from "react-icons/lu";
 
-export type UploadButtonProps = {
-  href: string;
-};
-
-export const UploadButton = ({ href }: UploadButtonProps) => {
+export const UploadButton = () => {
   return (
-    <Link href={href}>
+    <Link href="/">
       <LuUpload className="text-3xl text-purple-800" />
     </Link>
   );

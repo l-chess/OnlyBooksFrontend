@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { SlOptionsVertical } from "react-icons/sl";
 import { OptionsDropdown } from "../../atoms/OptionsDropdown/OptionsDropdown";
 
@@ -11,23 +11,10 @@ export const ChatOptions = () => {
   ];
 
   const [showDropdown, setShowDropdown] = useState(false);
-  const containerRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setShowDropdown(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   return (
     <div className="relative">
-      <button type="button" ref={containerRef} onClick={() => setShowDropdown(true)}>
+      <button type="button" onClick={() => setShowDropdown(!showDropdown)}>
         <SlOptionsVertical />
       </button>
       {showDropdown && (
