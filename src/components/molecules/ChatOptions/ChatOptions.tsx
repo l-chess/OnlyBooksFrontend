@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { SlOptionsVertical } from "react-icons/sl";
-import { type Option, OptionsDropdown } from "../../atoms/OptionsDropdown/OptionsDropdown";
+import { OptionsDropdown } from "../../atoms/OptionsDropdown/OptionsDropdown";
 
 export const ChatOptions = () => {
   const options = [
