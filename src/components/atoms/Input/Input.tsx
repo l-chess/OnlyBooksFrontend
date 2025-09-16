@@ -21,7 +21,9 @@ export const Input = ({ variant, size, placeholder, iconLeft }: InputProps) => {
   };
 
   return (
-    <div className={`flex border-gray-400 py-1 ${variantClass(variant)}`}>
+    <div
+      className={`flex items-center gap-1 border-gray-400 py-1 text-gray-400 ${variantClass(variant)}`}
+    >
       {iconLeft && iconLeft}
       {size === "small" ? (
         <input
