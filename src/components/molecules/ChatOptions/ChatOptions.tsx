@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { SlOptionsVertical } from "react-icons/sl";
 import { OptionsDropdown } from "../../atoms/OptionsDropdown/OptionsDropdown";
 
