@@ -1,18 +1,20 @@
-import { useEffect, useRef, useState } from "react";
+"use client";
+import { useState } from "react";
 import { IoLogOutOutline, IoPersonCircleOutline } from "react-icons/io5";
 import { OptionsDropdown } from "../../atoms/OptionsDropdown/OptionsDropdown";
 
 export type ProfileButtonProps = {
   authenticated: boolean;
+  profileHref: string;
 };
 
-export const ProfileButton = ({ authenticated }: ProfileButtonProps) => {
+export const ProfileButton = ({ authenticated, profileHref }: ProfileButtonProps) => {
   const options = () => {
     if (authenticated) {
       return [
         {
           label: "Profil",
-          href: "/",
+          href: profileHref,
         },
         {
           label: (
@@ -39,27 +41,18 @@ export const ProfileButton = ({ authenticated }: ProfileButtonProps) => {
   };
 
   const [showDropdown, setShowDropdown] = useState(false);
-  const containerRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setShowDropdown(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   return (
     <div className="relative w-fit">
-      <button type="button" ref={containerRef} onClick={() => setShowDropdown(true)}>
+      <button
+        type="button"
+        onClick={() => setShowDropdown(!showDropdown)}
+        className="flex cursor-pointer items-center"
+      >
         <IoPersonCircleOutline className="text-4xl text-purple-800" />
       </button>
       {showDropdown && (
-        <div className="absolute top-[80%] right-0">
+        <div className="absolute right-0">
           <OptionsDropdown options={options()} />
         </div>
       )}
