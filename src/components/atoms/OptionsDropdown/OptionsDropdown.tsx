@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 export type Option = {
@@ -24,7 +25,7 @@ export const OptionsDropdown = ({ options, width = "max-w-fit" }: OptionsDropdow
             key={index}
             className={`${!isLast(index) && "border-b border-b-gray-400"} p-1 hover:underline`}
           >
-            <a href={option.href}>{option.label}</a>
+            <Link href={option.href}>{option.label}</Link>
           </div>
         );
       })}
