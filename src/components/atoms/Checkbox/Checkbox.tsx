@@ -3,22 +3,19 @@ import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
 export type CheckboxProps = {
   label: string;
   checked: boolean;
-  onChange?: (checked: boolean) => void;
+  onClick?: VoidFunction;
 };
 
-export const Checkbox = ({ label, checked, onChange }: CheckboxProps) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange?.(e.target.checked);
-  };
+export const Checkbox = ({ label, checked, onClick }: CheckboxProps) => {
   return (
     <label className="flex cursor-pointer items-center gap-1">
-      <input type="checkbox" checked={checked} onChange={handleChange} className="hidden" />
+      <input type="checkbox" checked={checked} onChange={onClick} className="hidden" />
       {checked === false ? (
         <ImCheckboxUnchecked className="text-gray-400" />
       ) : (
         <ImCheckboxChecked className="text-purple-800" />
       )}
-      <span className="font-medium text-gray-400">{label}</span>
+      <span className="font-semibold text-gray-400">{label}</span>
     </label>
   );
 };
