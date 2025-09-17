@@ -5,16 +5,15 @@ import { OptionsDropdown } from "../../atoms/OptionsDropdown/OptionsDropdown";
 
 export type ProfileButtonProps = {
   authenticated: boolean;
-  profileHref: string;
 };
 
-export const ProfileButton = ({ authenticated, profileHref }: ProfileButtonProps) => {
+export const ProfileButton = ({ authenticated }: ProfileButtonProps) => {
   const options = () => {
     if (authenticated) {
       return [
         {
           label: "Profil",
-          href: profileHref,
+          href: "/profile",
         },
         {
           label: (
@@ -30,7 +29,7 @@ export const ProfileButton = ({ authenticated, profileHref }: ProfileButtonProps
       return [
         {
           label: "Einloggen",
-          href: "/",
+          href: "/login",
         },
         {
           label: "Registrieren",
