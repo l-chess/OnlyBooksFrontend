@@ -5,7 +5,7 @@ import { Searchbar } from "../Searchbar/Searchbar";
 
 export const Navbar = ({ authenticated }: ProfileButtonProps) => {
   return (
-    <nav className="flex w-full items-center px-10 py-1">
+    <nav className="flex w-full items-center px-10 py-4">
       <div className="flex flex-1 items-center">
         <Logo />
       </div>

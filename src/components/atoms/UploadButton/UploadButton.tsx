@@ -3,7 +3,7 @@ import { LuUpload } from "react-icons/lu";
 
 export const UploadButton = () => {
   return (
-    <Link href="/">
+    <Link href="/upload">
       <LuUpload className="text-3xl text-purple-800" />
     </Link>
   );

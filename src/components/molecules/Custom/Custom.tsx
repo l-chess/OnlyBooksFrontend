@@ -7,9 +7,10 @@ export type CustomProps = {
   type: "button" | "dropdown";
   color: "lilla" | "gray" | "white";
   size: "small" | "medium";
+  width?: string;
   iconLeft?: ReactNode;
   onClick?: VoidFunction;
-  options: Option[];
+  options?: Option[];
 };
 
 export const Custom = ({
@@ -17,9 +18,10 @@ export const Custom = ({
   type,
   color,
   size,
+  width,
   iconLeft,
   onClick,
-  options = [],
+  options,
 }: CustomProps) => {
   const colorTheme = (color: string) => {
     switch (color) {
@@ -47,14 +49,16 @@ export const Custom = ({
   }
 
   return (
-    <div className="relative">
+    <div className="relative inline-block">
       <button
         type="button"
         onClick={onClick}
-        className={`${colorTheme(color)} ${scale(size)} flex items-center gap-1 rounded-full`}
+        className={`${colorTheme(color)} ${scale(size)} ${width} flex items-center justify-between gap-1 rounded-full ${onClick && "cursor-pointer"}`}
       >
-        {iconLeft && iconLeft}
-        {label}
+        <div className="flex items-center gap-1">
+          {iconLeft && iconLeft}
+          {label}
+        </div>
         {type === "dropdown" && !showDropdown && (
           <FaChevronDown className={size === "small" ? "text-sm" : ""} />
         )}
@@ -62,9 +66,9 @@ export const Custom = ({
           <FaChevronUp className={size === "small" ? "text-sm" : ""} />
         )}
       </button>
-      {showDropdown && (
-        <div className="absolute top-[110%]">
-          <OptionsDropdown options={options} width="w-full" />
+      {showDropdown && type === "dropdown" && options && (
+        <div className="absolute top-full right-0 left-0 mt-1 flex justify-center">
+          <OptionsDropdown options={options} />
         </div>
       )}
     </div>
