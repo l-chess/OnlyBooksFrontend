@@ -7,7 +7,7 @@ export type ChatSidebarProps = {
 export const ChatSidebar = ({ chats }: ChatSidebarProps) => {
   return (
     <div className="flex h-screen w-80 flex-1 flex-col">
-      <div className="flex h-10 items-center justify-center bg-purple-800 font-semibold text-lg text-white">
+      <div className="flex h-15 items-center justify-center bg-purple-800 font-semibold text-lg text-white">
         Chats
       </div>
       <div className="overflow-y-scroll">
