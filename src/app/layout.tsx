@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Navbar authenticated={true} profileHref="/profile" />
+        <Navbar authenticated={false} />
         {children}
       </body>
     </html>

@@ -13,13 +13,11 @@ type Story = StoryObj<typeof meta>;
 export const LoggedIn: Story = {
   args: {
     authenticated: true,
-    profileHref: "/",
   },
 };
 
 export const LoggedOut: Story = {
   args: {
     authenticated: false,
-    profileHref: "/",
   },
 };
