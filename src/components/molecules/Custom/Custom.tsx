@@ -1,5 +1,6 @@
-import type { ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
+import { type Option, OptionsDropdown } from "../../atoms/OptionsDropdown/OptionsDropdown";
 
 export type CustomProps = {
   label: string;
@@ -8,9 +9,18 @@ export type CustomProps = {
   size: "small" | "medium";
   iconLeft?: ReactNode;
   onClick?: VoidFunction;
+  options: Option[];
 };
 
-export const Custom = ({ label, type, color, size, iconLeft, onClick }: CustomProps) => {
+export const Custom = ({
+  label,
+  type,
+  color,
+  size,
+  iconLeft,
+  onClick,
+  options = [],
+}: CustomProps) => {
   const colorTheme = (color: string) => {
     switch (color) {
       case "lilla":
@@ -31,16 +41,32 @@ export const Custom = ({ label, type, color, size, iconLeft, onClick }: CustomPr
     }
   };
 
+  const [showDropdown, setShowDropdown] = useState(false);
+  if (type === "dropdown") {
+    onClick = () => setShowDropdown(!showDropdown);
+  }
+
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`${colorTheme(color)} ${scale(size)} flex items-center gap-1 rounded-full`}
-    >
-      {iconLeft && iconLeft}
-      {label}
-      {type === "dropdown" && <FaChevronDown className={size === "small" ? "text-sm" : ""} />}
-    </button>
+    <div className="relative">
+      <button
+        type="button"
+        onClick={onClick}
+        className={`${colorTheme(color)} ${scale(size)} flex items-center gap-1 rounded-full`}
+      >
+        {iconLeft && iconLeft}
+        {label}
+        {type === "dropdown" && !showDropdown && (
+          <FaChevronDown className={size === "small" ? "text-sm" : ""} />
+        )}
+        {type === "dropdown" && showDropdown && (
+          <FaChevronUp className={size === "small" ? "text-sm" : ""} />
+        )}
+      </button>
+      {showDropdown && (
+        <div className="absolute top-[110%] min-w-full">
+          <OptionsDropdown options={options} width="w-full" />
+        </div>
+      )}
+    </div>
   );
 };
-// TODO: add dropdown logic

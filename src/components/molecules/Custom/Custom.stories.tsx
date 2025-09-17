@@ -16,6 +16,7 @@ export const Button: Story = {
     type: "button",
     color: "lilla",
     size: "small",
+    options: [],
   },
 };
 
@@ -25,5 +26,19 @@ export const Dropdown: Story = {
     type: "dropdown",
     color: "white",
     size: "small",
+    options: [
+      {
+        label: "Option 1",
+        href: "/",
+      },
+      {
+        label: "Option 2",
+        href: "/",
+      },
+      {
+        label: "Option 3",
+        href: "/",
+      },
+    ],
   },
 };
