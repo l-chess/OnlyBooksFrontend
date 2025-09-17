@@ -33,3 +33,50 @@ export const Default: Story = {
     ],
   },
 };
+
+export const Long: Story = {
+  args: {
+    options: [
+      {
+        label: "Option 1",
+        href: "/",
+      },
+      {
+        label: "Option 2",
+        href: "/",
+      },
+      {
+        label: "Option 3",
+        href: "/",
+      },
+      {
+        label: "Option 4",
+        href: "/",
+      },
+      {
+        label: "Option 5",
+        href: "/",
+      },
+      {
+        label: "Option 6",
+        href: "/",
+      },
+      {
+        label: "Option 7",
+        href: "/",
+      },
+      {
+        label: "Option 8",
+        href: "/",
+      },
+      {
+        label: "Option 9",
+        href: "/",
+      },
+      {
+        label: "Option 10",
+        href: "/",
+      },
+    ],
+  },
+};
