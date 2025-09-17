@@ -3,32 +3,12 @@ import { useState } from "react";
 import { MdOutlineLanguage } from "react-icons/md";
 import { RiArrowDropDownLine } from "react-icons/ri";
 
-function evalColor(color: "Lilla" | "Gray" | "White"): string[] {
-  switch (color) {
-    case "Lilla":
-      return [" bg-purple-800 text-white", " hover:bg-purple-900"];
-    case "Gray":
-      return [" bg-gray-300 text-black", " hover:bg-gray-400"];
-    case "White":
-      return [" bg-white text-black border-2 border-solid border-gray-400", " hover:bg-gray-400"];
-  }
-}
-
-function uniqueKey(): string {
-  const symbols = "QWERTZUIOPASDFGHJKLYXCVBNMqwertzuiopasdfghjklyxcvbnm1234567890!§$%&";
-  let result = "";
-  for (let i = 0; i < 5; i++) {
-    result = result.concat(symbols[Math.floor(Math.random() * symbols.length)]);
-  }
-  return result;
-}
-
-type optionProps = {
+export type optionProps = {
   text: string;
   destination: string;
 };
 
-type ButtonProps = {
+export type ButtonProps = {
   text: string;
   type: "Button" | "Label" | "Dropdown";
   color: "Lilla" | "Gray" | "White";
@@ -37,13 +17,31 @@ type ButtonProps = {
   onClick?: VoidFunction;
 };
 
-function Button({ text, type, color, lang, dropdownOptions, onClick }: ButtonProps): any {
+export function Button({ text, type, color, lang, dropdownOptions, onClick }: ButtonProps): any {
   const [dropdownToggle, setDropdownToggle] = useState("hidden");
   function handleMenu() {
     if (dropdownToggle === "block") {
       setDropdownToggle("hidden");
     } else {
       setDropdownToggle("block");
+    }
+  }
+  function uniqueKey(): string {
+    const symbols = "QWERTZUIOPASDFGHJKLYXCVBNMqwertzuiopasdfghjklyxcvbnm1234567890!§$%&";
+    let result = "";
+    for (let i = 0; i < 5; i++) {
+      result = result.concat(symbols[Math.floor(Math.random() * symbols.length)]);
+    }
+    return result;
+  }
+  function evalColor(color: "Lilla" | "Gray" | "White"): string[] {
+    switch (color) {
+      case "Lilla":
+        return [" bg-purple-800 text-white", " hover:bg-purple-900"];
+      case "Gray":
+        return [" bg-gray-300 text-black", " hover:bg-gray-400"];
+      case "White":
+        return [" bg-white text-black border-2 border-solid border-gray-400", " hover:bg-gray-400"];
     }
   }
   return (
