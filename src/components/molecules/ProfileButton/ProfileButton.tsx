@@ -33,7 +33,7 @@ export const ProfileButton = ({ authenticated }: ProfileButtonProps) => {
         },
         {
           label: "Registrieren",
-          href: "/",
+          href: "/registration",
         },
       ];
     }
