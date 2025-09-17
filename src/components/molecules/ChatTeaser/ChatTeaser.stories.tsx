@@ -15,7 +15,6 @@ export const Default: Story = {
     cover: {
       src: "https://booklounge.co.za/wp-content/uploads/2022/08/the-song-of-achilles-1.jpg",
       alt: "The Song of Achilles",
-      className: "",
     },
     title: "The Song of Achilles",
     latestMessage: "Ja, ist noch zu haben.",

@@ -1,7 +1,7 @@
 export type ImageProps = {
   src: string;
   alt: string;
-  className: string;
+  className?: string;
 };
 
 export const Image = ({ src, alt, className }: ImageProps) => {
