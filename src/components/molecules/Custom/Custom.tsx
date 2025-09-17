@@ -63,7 +63,7 @@ export const Custom = ({
         )}
       </button>
       {showDropdown && (
-        <div className="absolute top-[110%] min-w-full">
+        <div className="absolute top-[110%]">
           <OptionsDropdown options={options} width="w-full" />
         </div>
       )}

@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 export type InputProps = {
   variant: "underlined" | "framed";
   size: "small" | "medium";
-  placeholder: string;
+  placeholder?: string;
   iconLeft?: ReactNode;
 };
 
@@ -27,7 +27,7 @@ export const Input = ({ variant, size, placeholder, iconLeft }: InputProps) => {
       {iconLeft && iconLeft}
       {size === "small" ? (
         <input
-          className="w-full overflow-scroll font-semibold text-black placeholder-gray-400 outline-none placeholder:font-semibold"
+          className="w-full font-semibold text-black placeholder-gray-400 outline-none placeholder:font-semibold"
           placeholder={placeholder}
         />
       ) : (

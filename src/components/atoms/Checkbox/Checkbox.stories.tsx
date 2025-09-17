@@ -12,10 +12,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Unchecked: Story = {
-  render: (args) => {
-    const [checked, setChecked] = useState(args.checked ?? false);
-    return <Checkbox {...args} checked={checked} onChange={setChecked} />;
-  },
   args: {
     label: "Label",
     checked: false,
@@ -23,10 +19,6 @@ export const Unchecked: Story = {
 };
 
 export const Checked: Story = {
-  render: (args) => {
-    const [checked, setChecked] = useState(args.checked ?? false);
-    return <Checkbox {...args} checked={checked} onChange={setChecked} />;
-  },
   args: {
     label: "Label",
     checked: true,
