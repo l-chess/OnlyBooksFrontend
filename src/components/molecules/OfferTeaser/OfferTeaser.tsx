@@ -11,7 +11,7 @@ export type OfferTeaserProps = {
   language: string;
   postCode: string;
   city: string;
-  price: number;
+  price: number | "Tauschen";
   className?: string;
 };
 
@@ -41,7 +41,7 @@ export const OfferTeaser = ({
         <span className="self-start text-left text-gray-400">
           {postCode}, {city}
         </span>
-        <span className="font-bold">{price + "€"}</span>
+        <span className="font-bold">{price + (price !== "Tauschen" ? "€" : "")}</span>
       </div>
     </Link>
   );
