@@ -1,13 +1,18 @@
-import type { ReactNode } from "react";
+"use client";
+
+import type { ReactNode, ChangeEvent } from "react";
 
 export type InputProps = {
   variant: "underlined" | "framed";
   size: "small" | "medium";
   placeholder?: string;
   iconLeft?: ReactNode;
+  value?: string; // <- hinzufügen
+  onChange?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  type?: string;
 };
 
-export const Input = ({ variant, size, placeholder, iconLeft }: InputProps) => {
+export const Input = ({ variant, size, placeholder, iconLeft, value, onChange, type }: InputProps) => {
   const variantClass = (variant: string) => {
     if (variant === "underlined") {
       return "border-b-2";
@@ -29,11 +34,16 @@ export const Input = ({ variant, size, placeholder, iconLeft }: InputProps) => {
         <input
           className="w-full font-semibold text-black placeholder-gray-400 outline-none placeholder:font-semibold"
           placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          type={type ?? "text"}
         />
       ) : (
         <textarea
           className="h-full w-full resize-none overflow-scroll font-semibold text-black placeholder-gray-400 outline-none placeholder:font-semibold"
           placeholder={placeholder}
+          value={value}
+          onChange={onChange}
         />
       )}
     </div>
