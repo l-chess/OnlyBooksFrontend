@@ -15,7 +15,7 @@ export type OfferDetailProps = {
   state: string;
   postCode: string;
   city: string;
-  price: number;
+  price: number | "Tauschen";
   viewProfileLink: string;
   className?: string;
 };
@@ -52,12 +52,12 @@ export const OfferDetail = ({
       <div className="w-2/6 space-y-2">
         <h1 className="my-1 font-bold text-xl">{title}</h1>
         <h2 className="text-lg">{author}</h2>
-        <div className="flex w-full items-center justify-between">
-          <span className="my-1 text-gray-400">
-            {postCode}, {city}
-          </span>
-          <span className="my-1 font-semibold">{price + "€"}</span>
-        </div>
+        <span className="my-1 text-gray-400">
+          {postCode} {city}
+        </span>
+        <span className="my-1 font-semibold text-lg">
+          {price + (price !== "Tauschen" ? "€" : "")}
+        </span>
         <Custom type="button" color="lilla" label="Anfrage senden" size="medium" />
         <span className="mb-5 text-gray-400">{state}</span>
         <DetailAccordion title="Details anzeigen" content={details} />
