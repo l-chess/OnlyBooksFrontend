@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { SlOptionsVertical } from "react-icons/sl";
 import { OptionsDropdown } from "../../atoms/OptionsDropdown/OptionsDropdown";
@@ -15,11 +16,11 @@ export const ChatOptions = () => {
   return (
     <div className="relative">
       <button type="button" onClick={() => setShowDropdown(!showDropdown)}>
-        <SlOptionsVertical />
+        <SlOptionsVertical className="text-gray-400" />
       </button>
       {showDropdown && (
-        <div className="absolute right-0 w-32">
-          <OptionsDropdown options={options} />
+        <div className="absolute right-0">
+          <OptionsDropdown options={options} width="w-40" />
         </div>
       )}
     </div>

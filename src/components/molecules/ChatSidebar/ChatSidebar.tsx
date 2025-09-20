@@ -1,12 +1,12 @@
-import { ChatTeaser, type ChatTeaserProps } from "../ChatTeaser/ChatTeaser";
+import { type Chat, ChatTeaser } from "../ChatTeaser/ChatTeaser";
 
 export type ChatSidebarProps = {
-  chats: ChatTeaserProps[];
+  chats: Chat[];
 };
 
 export const ChatSidebar = ({ chats }: ChatSidebarProps) => {
   return (
-    <div className="flex h-screen w-80 flex-1 flex-col">
+    <div className="flex h-screen flex-1 flex-col border-r border-r-purple-800">
       <div className="flex h-15 items-center justify-center bg-purple-800 font-semibold text-lg text-white">
         Chats
       </div>
@@ -15,9 +15,9 @@ export const ChatSidebar = ({ chats }: ChatSidebarProps) => {
           <ChatTeaser
             key={index}
             title={chat.title}
+            variant="compact"
             cover={chat.cover}
-            latestMessage={chat.latestMessage}
-            timeStamp={chat.timeStamp}
+            messages={chat.messages}
             isLast={index === chats.length - 1}
           />
         ))}

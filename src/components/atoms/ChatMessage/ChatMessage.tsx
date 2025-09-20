@@ -1,8 +1,10 @@
+"use client";
 import { useEffect, useRef, useState } from "react";
 
 export type ChatMessageProps = {
   message: string;
   self: boolean;
+  timeStamp: string;
 };
 
 export const ChatMessage = ({ message, self }: ChatMessageProps) => {
