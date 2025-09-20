@@ -9,11 +9,16 @@ export type ProfileTeaserProps = {
 
 export const ProfileTeaser = ({ name, variant }: ProfileTeaserProps) => {
   return (
-    <Link href="/" className={`flex items-center ${variant === "external" ? "w-full" : ""}`}>
-      <IoPersonCircleOutline className="left-0 text-4xl" />
-      <span className="font-semibold text-lg">{name}</span>
+    <Link
+      href="/"
+      className={`flex items-center ${variant === "external" ? "w-full justify-between px-4" : ""}`}
+    >
+      <div className="flex items-center gap-1">
+        <IoPersonCircleOutline className="left-0 text-4xl" />
+        <span className="font-semibold text-lg">{name}</span>
+      </div>
       {variant === "external" && (
-        <span className="right-0 ml-50 flex items-center font-medium text-gray-400 text-lg">
+        <span className="right-0 flex items-center font-medium text-gray-400 text-lg">
           Profil ansehen <FaChevronRight className="text-sm" />
         </span>
       )}

@@ -14,7 +14,6 @@ export const Small: Story = {
   args: {
     title: "The Song of Achilles",
     className: "w-50",
-    href: "",
     author: "Madeline Miller",
     tags: ["Englisch", "LGBTQ+"],
     postCode: "12345",
@@ -34,7 +33,6 @@ export const Medium: Story = {
   args: {
     title: "The Song of Achilles",
     className: "w-screen",
-    href: "",
     author: "Madeline Miller",
     tags: ["Englisch", "LGBTQ+"],
     postCode: "12345",

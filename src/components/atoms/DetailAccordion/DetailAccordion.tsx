@@ -18,7 +18,7 @@ export const DetailAccordion = ({ title, content }: DetailAccordionProps) => {
       <button
         type="button"
         onClick={toggleAccordion}
-        className="flex items-center gap-2 font-semibold text-lg"
+        className="my-2 flex cursor-pointer items-center gap-2 font-semibold text-lg"
       >
         {title} {open === false ? <FaChevronDown /> : <FaChevronUp />}
       </button>

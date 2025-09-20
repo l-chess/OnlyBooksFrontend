@@ -6,9 +6,8 @@ import { Custom } from "../Custom/Custom";
 export type OfferTeaserProps = {
   image: ImageProps;
   title: string;
-  href: string;
   author: string;
-  tags: string[];
+  tags?: string[];
   postCode: string;
   city: string;
   price: number | "Tauschen";
@@ -19,7 +18,6 @@ export type OfferTeaserProps = {
 
 export const OfferTeaser = ({
   className,
-  href,
   image,
   title,
   author,
@@ -32,7 +30,7 @@ export const OfferTeaser = ({
 }: OfferTeaserProps) => {
   return (
     <Link
-      href={href}
+      href="/offer"
       className={`group flex cursor-pointer ${size === "small" ? "flex-col gap-1 text-center" : "items-center"} ${className}`}
     >
       <Image src={image.src} alt={image.alt} className={image.className} />
@@ -42,7 +40,7 @@ export const OfferTeaser = ({
         <div
           className={`flex flex-wrap gap-1 overflow-hidden ${size === "small" ? "max-h-16 justify-center" : "max-h-7"}`}
         >
-          {tags.map((tag, index) => (
+          {tags?.map((tag, index) => (
             <Custom key={index} type="button" color="gray" label={tag} size="small" />
           ))}
         </div>

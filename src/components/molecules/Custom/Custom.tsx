@@ -50,7 +50,7 @@ export const Custom = ({
   }
 
   return (
-    <div className="relative inline-block">
+    <div className="relative w-full">
       <button
         type="button"
         onClick={onClick}
