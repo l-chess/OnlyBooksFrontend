@@ -21,6 +21,7 @@ export const Self: Story = {
   args: {
     message: "Hi, ist das Buch noch zu haben?",
     self: true,
+    timeStamp: "1h",
   },
 };
 
@@ -28,6 +29,7 @@ export const Incoming: Story = {
   args: {
     message: "Ja, ist noch zu haben.",
     self: false,
+    timeStamp: "1h",
   },
 };
 
@@ -36,5 +38,6 @@ export const Long: Story = {
     message:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel euismod nibh, vel lacinia velit. Nam lobortis rhoncus lacinia. Nullam laoreet sit amet dui in pellentesque. Ut at est vel nulla feugiat interdum nec ornare leo. Mauris fringilla hendrerit justo sed sollicitudin. Aenean non felis purus. Mauris nec luctus orci.",
     self: true,
+    timeStamp: "1h",
   },
 };
