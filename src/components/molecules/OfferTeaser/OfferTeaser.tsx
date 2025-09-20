@@ -8,10 +8,12 @@ export type OfferTeaserProps = {
   title: string;
   href: string;
   author: string;
-  language: string;
+  tags: string[];
   postCode: string;
   city: string;
   price: number | "Tauschen";
+  condition: "Wie neu" | "Leichte Gebrauchsspuren" | "Gebraucht" | "Kaputt";
+  size: "small" | "medium";
   className?: string;
 };
 
@@ -21,27 +23,45 @@ export const OfferTeaser = ({
   image,
   title,
   author,
-  language,
+  tags,
   postCode,
   city,
   price,
+  condition,
+  size,
 }: OfferTeaserProps) => {
   return (
     <Link
       href={href}
-      className={
-        "flex cursor-pointer flex-col content-center items-center hover:underline" + className
-      }
+      className={`group flex cursor-pointer ${size === "small" ? "flex-col gap-1 text-center" : "items-center"} ${className}`}
     >
       <Image src={image.src} alt={image.alt} className={image.className} />
-      <h1 className="font-semibold text-xl">{title}</h1>
-      <h2 className="text-lg">{author}</h2>
-      <Custom type="button" color="gray" label={language} size="small" />
-      <div className="flex w-full items-center justify-between">
-        <span className="self-start text-left text-gray-400">
-          {postCode}, {city}
-        </span>
-        <span className="font-bold">{price + (price !== "Tauschen" ? "€" : "")}</span>
+      <div className={size === "medium" ? "space-y-2" : ""}>
+        <h1 className="font-semibold text-xl group-hover:underline">{title}</h1>
+        <h2 className="text-lg group-hover:underline">{author}</h2>
+        <div
+          className={`flex flex-wrap gap-1 overflow-hidden ${size === "small" ? "max-h-16 justify-center" : "max-h-7"}`}
+        >
+          {tags.map((tag, index) => (
+            <Custom key={index} type="button" color="gray" label={tag} size="small" />
+          ))}
+        </div>
+        <div className="flex w-full items-center justify-between gap-2">
+          {size === "small" && (
+            <span className="self-start text-left text-gray-400">
+              {postCode} {city}
+            </span>
+          )}
+          <span className={`font-bold ${size === "medium" && "text-2xl"}`}>
+            {price + (price !== "Tauschen" ? "€" : "")}
+          </span>
+          {size === "medium" && <span className="text-gray-400">{condition}</span>}
+        </div>
+        {size === "medium" && (
+          <span className="text-gray-400 text-lg">
+            {postCode} {city}
+          </span>
+        )}
       </div>
     </Link>
   );
