@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
 import { Input } from "@/src/components/atoms/Input/Input";
 
 const Login = () => {
@@ -34,8 +34,21 @@ const Login = () => {
     <div className="flex min-h-screen flex-col items-center justify-center space-y-2">
       <h1 className="text-center font-bold text-2xl text-purple-800">Einloggen</h1>
       <div className="flex w-50 flex-col space-y-2">
-        <Input variant="framed" size="small" placeholder="Benutzername" value={username} onChange={(e) => setUsername(e.target.value)} />
-        <Input variant="framed" size="small" placeholder="Passwort" value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
+        <Input
+          variant="framed"
+          size="small"
+          placeholder="Benutzername"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <Input
+          variant="framed"
+          size="small"
+          placeholder="Passwort"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+        />
       </div>
 
       <button
@@ -46,7 +59,7 @@ const Login = () => {
         Einloggen
       </button>
 
-      {message && <p className="mt-2 text-sm text-gray-600">{message}</p>}
+      {message && <p className="mt-2 text-gray-600 text-sm">{message}</p>}
 
       <Link href="/registration" className="text-gray-400">
         Noch kein Konto? Dann <u>hier registrieren.</u>
