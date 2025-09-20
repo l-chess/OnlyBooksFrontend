@@ -35,15 +35,12 @@ export const OfferDetail = ({
   className,
 }: OfferDetailProps) => {
   return (
-    <div className={"flex inline-flex" + className}>
+    <div className={`flex inline-flex${className}`}>
       <div className="w-4/6">
         <Image src={image.src} alt={image.alt} className={image.className} />
         <div className="flex w-full items-center justify-between">
           <ProfileTeaser name={sellerName} variant="profile" />
-          <Link
-            href={viewProfileLink}
-            className="flex inline-flex gap-1 text-gray-400 hover:underline"
-          >
+          <Link href={viewProfileLink} className="flex gap-1 text-gray-400 hover:underline">
             Profil ansehen
             <MdKeyboardArrowRight />
           </Link>

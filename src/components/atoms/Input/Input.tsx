@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode, ChangeEvent } from "react";
+import type { ChangeEvent, ReactNode } from "react";
 
 export type InputProps = {
   variant: "underlined" | "framed";
@@ -12,7 +12,15 @@ export type InputProps = {
   type?: string;
 };
 
-export const Input = ({ variant, size, placeholder, iconLeft, value, onChange, type }: InputProps) => {
+export const Input = ({
+  variant,
+  size,
+  placeholder,
+  iconLeft,
+  value,
+  onChange,
+  type,
+}: InputProps) => {
   const variantClass = (variant: string) => {
     if (variant === "underlined") {
       return "border-b-2";
