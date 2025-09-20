@@ -1,9 +1,10 @@
+"use client";
 import { type ReactNode, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
 import { type Option, OptionsDropdown } from "../../atoms/OptionsDropdown/OptionsDropdown";
 
 export type CustomProps = {
-  label: string;
+  label?: string;
   type: "button" | "dropdown";
   color: "lilla" | "gray" | "white";
   size: "small" | "medium";
@@ -57,7 +58,7 @@ export const Custom = ({
       >
         <div className="flex items-center gap-1">
           {iconLeft && iconLeft}
-          {label}
+          {label && label}
         </div>
         {type === "dropdown" && !showDropdown && (
           <FaChevronDown className={size === "small" ? "text-sm" : ""} />

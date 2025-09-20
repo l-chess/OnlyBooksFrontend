@@ -1,0 +1,41 @@
+{
+  "chats": [
+    {
+      "title": "The Song of Achilles",
+      "cover": {
+        "src": "https://booklounge.co.za/wp-content/uploads/2022/08/the-song-of-achilles-1.jpg",
+        "alt": "The Song of Achilles"
+      },
+      "timeStamp": "1h",
+      "postalCode": "20144 Hamburg",
+      "messages": [
+        {
+          "message": "Hi, ist das Buch noch zu haben?",
+          "self": true,
+          "timeStamp": "1h"
+        },
+        {
+          "message": "Ja ist noch da :)",
+          "self": false,
+          "timeStamp": "4m"
+        }
+      ]
+    },
+    {
+      "title": "Iron Widow",
+      "cover": {
+        "src": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1617986668l/52459864.jpg",
+        "alt": "Iron Widow"
+      },
+      "timeStamp": "1h",
+      "postalCode": "20255 Hamburg",
+      "messages": [
+        {
+          "message": "Hi, ist das Buch noch zu haben?",
+          "self": true,
+          "timeStamp": "1h"
+        }
+      ]
+    }
+  ]
+}
