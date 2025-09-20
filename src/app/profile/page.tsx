@@ -1,31 +1,60 @@
-type Post = {
-  id: string;
-  title: string;
+import { ProfileTeaser } from "@/src/components/atoms/ProfileTeaser/ProfileTeaser";
+import { Custom } from "@/src/components/molecules/Custom/Custom";
+import {
+  OfferTeaser,
+  type OfferTeaserProps,
+} from "@/src/components/molecules/OfferTeaser/OfferTeaser";
+
+export type ProfileProps = {
+  name: string;
+  creationDate: string;
+  totalOffers: number;
+  ratings?: number;
+  offers?: OfferTeaserProps[];
 };
 
-const RouteAPage = async () => {
-  const data = await fetch("https://api.vercel.app/blog");
-  const posts: Post[] = await data.json();
+const Profile = ({ name, creationDate, totalOffers, ratings, offers }: ProfileProps) => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-4">
-      <div className="w-full max-w-lg rounded-xl bg-white p-8 text-center shadow-lg">
-        <h1 className="mb-4 font-bold text-4xl text-gray-800">This is RouteA!</h1>
-        <p className="text-gray-600 text-lg">
-          This page component uses the required default export.
-        </p>
+    <div className="flex">
+      <div className="space-y-2 text-center">
+        <ProfileTeaser variant="profile" name={name} />
+        <p className="text-gray-400">{`aktiv seit ${creationDate}`}</p>
+        <p className="text-gray-400">{`${totalOffers} Anzeigen`}</p>
+        <p className="text-gray-400">{ratings ? `${ratings} Bewertungen` : "Keine Bewertungen"}</p>
+        <Custom
+          label="Profile bewerten"
+          color="lilla"
+          size="medium"
+          type="button"
+          width="w-full justify-center"
+        />
+        <Custom
+          label="Profil melden"
+          color="white"
+          size="medium"
+          type="button"
+          width="w-full justify-center"
+        />
       </div>
-      <ul className="mx-auto max-w-lg list-inside list-disc space-y-4 rounded-lg bg-gray-100 p-8">
-        {posts.map((post) => (
-          <li
-            key={post.id}
-            className="cursor-pointer font-semibold text-gray-800 text-xl transition-colors hover:text-blue-600"
-          >
-            {post.title}
-          </li>
+
+      <div>
+        {offers?.map((offer, index) => (
+          <OfferTeaser
+            key={index}
+            size="medium"
+            image={offer.image}
+            title={offer.title}
+            author={offer.author}
+            tags={offer.tags}
+            postCode={offer.postCode}
+            city={offer.city}
+            price={offer.price}
+            condition={offer.condition}
+          />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
 
-export default RouteAPage;
+export default Profile;
