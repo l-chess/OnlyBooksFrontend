@@ -1,3 +1,5 @@
+"use client";
+
 import type { ReactNode } from "react";
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";

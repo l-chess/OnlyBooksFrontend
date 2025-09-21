@@ -11,7 +11,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/auth/einloggen", {
+      const response = await fetch("http://localhost:8080/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -19,8 +19,11 @@ const Login = () => {
 
       if (response.ok) {
         const user = await response.json();
+        localStorage.setItem("isAuthenticated", "true");
+        localStorage.setItem("username", user.username);
+        window.dispatchEvent(new Event("authChanged"));
+        window.location.href = "/";
         setMessage(`Willkommen zurück, ${user.username}! 🎉`);
-        // 👉 hier könntest du später Token speichern oder redirecten
       } else {
         setMessage("Benutzername oder Passwort falsch!");
       }

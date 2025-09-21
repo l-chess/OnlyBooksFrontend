@@ -69,7 +69,15 @@ export const Custom = ({
       </button>
       {showDropdown && type === "dropdown" && options && (
         <div className="absolute top-full right-0 left-0 mt-1 flex justify-center">
-          <OptionsDropdown options={options} />
+          <OptionsDropdown
+            options={options.map((opt) => ({
+              ...opt,
+              onClick: () => {
+                opt.onClick?.();
+                setShowDropdown(false);
+              },
+            }))}
+          />
         </div>
       )}
     </div>

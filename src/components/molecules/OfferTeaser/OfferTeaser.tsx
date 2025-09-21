@@ -4,6 +4,7 @@ import { Image } from "../../atoms/Image/Image";
 import { Custom } from "../Custom/Custom";
 
 export type OfferTeaserProps = {
+  id: number;
   image: ImageProps;
   title: string;
   author: string;
@@ -18,6 +19,7 @@ export type OfferTeaserProps = {
 
 export const OfferTeaser = ({
   className,
+  id,
   image,
   title,
   author,
@@ -30,7 +32,7 @@ export const OfferTeaser = ({
 }: OfferTeaserProps) => {
   return (
     <Link
-      href="/offer"
+      href={`/offer/${id}`}
       className={`group flex cursor-pointer ${size === "small" ? "flex-col gap-1 text-center" : "items-center"} ${className}`}
     >
       <Image src={image.src} alt={image.alt} className={image.className} />
