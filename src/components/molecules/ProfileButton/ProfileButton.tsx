@@ -25,6 +25,7 @@ export const ProfileButton = ({ authenticated }: ProfileButtonProps) => {
               onClick={() => {
                 localStorage.removeItem("isAuthenticated");
                 localStorage.removeItem("username");
+                localStorage.removeItem("cart");
                 window.location.href = "/login";
               }}
             >

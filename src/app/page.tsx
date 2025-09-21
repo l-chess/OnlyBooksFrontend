@@ -94,33 +94,33 @@ const Homepage = ({ languages, genres }: HomepageProps) => {
         <div className="w-fit">
           <Custom label="Genre" color="lilla" size="small" type="dropdown" options={genres} />
         </div>
-        <div className="w-fit">
-          <Custom
-            label="Entfernung"
-            color="lilla"
-            size="small"
-            type="dropdown"
-            options={[
-              { label: "< 10km", href: "" },
-              { label: "< 50km", href: "" },
-              { label: "< 100km", href: "" },
-              { label: "> 100km", href: "" },
-            ]}
-          />
-        </div>
-        <div className="w-fit">
-          <Custom
-            label="Tauschen und Kaufen"
-            color="lilla"
-            size="small"
-            type="dropdown"
-            options={[
-              { label: "Tauschen", href: "" },
-              { label: "Kaufen", href: "" },
-              { label: "Tauschen und Kaufen", href: "" },
-            ]}
-          />
-        </div>
+        {/*<div className="w-fit">*/}
+        {/*  <Custom*/}
+        {/*    label="Entfernung"*/}
+        {/*    color="lilla"*/}
+        {/*    size="small"*/}
+        {/*    type="dropdown"*/}
+        {/*    options={[*/}
+        {/*      { label: "< 10km", href: "" },*/}
+        {/*      { label: "< 50km", href: "" },*/}
+        {/*      { label: "< 100km", href: "" },*/}
+        {/*      { label: "> 100km", href: "" },*/}
+        {/*    ]}*/}
+        {/*  />*/}
+        {/*</div>*/}
+        {/*<div className="w-fit">*/}
+        {/*  <Custom*/}
+        {/*    label="Tauschen und Kaufen"*/}
+        {/*    color="lilla"*/}
+        {/*    size="small"*/}
+        {/*    type="dropdown"*/}
+        {/*    options={[*/}
+        {/*      { label: "Tauschen", href: "" },*/}
+        {/*      { label: "Kaufen", href: "" },*/}
+        {/*      { label: "Tauschen und Kaufen", href: "" },*/}
+        {/*    ]}*/}
+        {/*  />*/}
+        {/*</div>*/}
       </div>
 
       <div className="flex flex-wrap gap-12">
