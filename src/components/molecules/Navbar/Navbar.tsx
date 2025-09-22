@@ -37,9 +37,7 @@ export const Navbar = () => {
       <div className="flex flex-1 items-center">
         <Logo />
       </div>
-      <div>
-        {/*<Searchbar />*/}
-      </div>
+      <div>{/*<Searchbar />*/}</div>
       <div className="flex flex-1 items-center justify-end gap-2">
         <UploadButton />
         <Link href="/cart" className="relative">

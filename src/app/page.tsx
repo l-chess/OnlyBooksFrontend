@@ -1,13 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { IoSearchSharp } from "react-icons/io5";
 import { MdLanguage } from "react-icons/md";
 import type { OfferDetailType } from "@/src/app/offer/[id]/page";
+import { Input } from "../components/atoms/Input/Input";
 import type { Option } from "../components/atoms/OptionsDropdown/OptionsDropdown";
 import { Custom } from "../components/molecules/Custom/Custom";
-import { OfferTeaser, type OfferTeaserProps } from "../components/molecules/OfferTeaser/OfferTeaser";
-import { Input } from "../components/atoms/Input/Input";
-import {IoSearchSharp} from "react-icons/io5";
+import {
+  OfferTeaser,
+  type OfferTeaserProps,
+} from "../components/molecules/OfferTeaser/OfferTeaser";
 
 interface Book {
   id: number;
@@ -28,7 +31,11 @@ export type HomepageProps = {
   searchTerm?: string;
 };
 
-const Homepage = ({ languages = [], genres = [], searchTerm: initialSearchTerm = "" }: HomepageProps) => {
+const Homepage = ({
+  languages = [],
+  genres = [],
+  searchTerm: initialSearchTerm = "",
+}: HomepageProps) => {
   const [offers, setOffers] = useState<OfferTeaserProps[]>([]);
   const [filteredOffers, setFilteredOffers] = useState<OfferTeaserProps[]>([]);
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
@@ -38,26 +45,26 @@ const Homepage = ({ languages = [], genres = [], searchTerm: initialSearchTerm =
   // biome-ignore lint/correctness/useExhaustiveDependencies: parsePrice & parseCondition sind statisch
   useEffect(() => {
     fetch("http://localhost:8080/api/books")
-        .then((res) => res.json())
-        .then((data: Book[]) => {
-          const mappedOffers = data.map((book) => ({
-            id: book.id,
-            title: book.title,
-            author: book.author,
-            image: book.coverImage
-                ? { src: `data:image/jpeg;base64,${book.coverImage}`, alt: book.title }
-                : { src: "/default-cover.jpg", alt: "Kein Bild verfügbar" },
-            price: parsePrice(book.price),
-            condition: parseCondition(book.condition),
-            tags: book.tags ? book.tags.split(",") : [],
-            postCode: book.postCode || "",
-            city: book.city || "",
-            size: "small" as "small",
-          }));
-          setOffers(mappedOffers);
-          setFilteredOffers(mappedOffers);
-        })
-        .catch((err) => console.error(err));
+      .then((res) => res.json())
+      .then((data: Book[]) => {
+        const mappedOffers = data.map((book) => ({
+          id: book.id,
+          title: book.title,
+          author: book.author,
+          image: book.coverImage
+            ? { src: `data:image/jpeg;base64,${book.coverImage}`, alt: book.title }
+            : { src: "/default-cover.jpg", alt: "Kein Bild verfügbar" },
+          price: parsePrice(book.price),
+          condition: parseCondition(book.condition),
+          tags: book.tags ? book.tags.split(",") : [],
+          postCode: book.postCode || "",
+          city: book.city || "",
+          size: "small" as "small",
+        }));
+        setOffers(mappedOffers);
+        setFilteredOffers(mappedOffers);
+      })
+      .catch((err) => console.error(err));
   }, []);
 
   useEffect(() => {
@@ -68,7 +75,7 @@ const Homepage = ({ languages = [], genres = [], searchTerm: initialSearchTerm =
     if (searchTerm) {
       const term = searchTerm.toLowerCase();
       temp = temp.filter(
-          (o) => o.title.toLowerCase().includes(term) || o.author.toLowerCase().includes(term)
+        (o) => o.title.toLowerCase().includes(term) || o.author.toLowerCase().includes(term)
       );
     }
 
@@ -82,7 +89,7 @@ const Homepage = ({ languages = [], genres = [], searchTerm: initialSearchTerm =
   };
 
   const parseCondition = (
-      cond?: string
+    cond?: string
   ): "Wie neu" | "Leichte Gebrauchsspuren" | "Gebraucht" | "Kaputt" => {
     switch (cond) {
       case "Wie neu":
@@ -99,68 +106,68 @@ const Homepage = ({ languages = [], genres = [], searchTerm: initialSearchTerm =
   };
 
   return (
-      <div className="w-full space-y-4">
-        <div className="flex items-center gap-4 ml-10">
-          <Input
-              type="text"
-              placeholder="Suche"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              variant="framed"
-              size="small"
-              iconLeft={<IoSearchSharp className="text-xl" />}
-          />
+    <div className="w-full space-y-4">
+      <div className="ml-10 flex items-center gap-4">
+        <Input
+          type="text"
+          placeholder="Suche"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          variant="framed"
+          size="small"
+          iconLeft={<IoSearchSharp className="text-xl" />}
+        />
 
-          {/*<Custom*/}
-          {/*    label={selectedLanguage || "Sprache"}*/}
-          {/*    iconLeft={<MdLanguage />}*/}
-          {/*    color="lilla"*/}
-          {/*    size="small"*/}
-          {/*    type="dropdown"*/}
-          {/*    options={[*/}
-          {/*      { label: "Alle Sprachen", onClick: () => setSelectedLanguage("") },*/}
-          {/*      ...(languages || []).map((lang) => ({*/}
-          {/*        ...lang,*/}
-          {/*        onClick: () =>*/}
-          {/*            setSelectedLanguage(lang.label ? lang.label.toString() : ""),*/}
-          {/*      })),*/}
-          {/*    ]}*/}
-          {/*/>*/}
+        {/*<Custom*/}
+        {/*    label={selectedLanguage || "Sprache"}*/}
+        {/*    iconLeft={<MdLanguage />}*/}
+        {/*    color="lilla"*/}
+        {/*    size="small"*/}
+        {/*    type="dropdown"*/}
+        {/*    options={[*/}
+        {/*      { label: "Alle Sprachen", onClick: () => setSelectedLanguage("") },*/}
+        {/*      ...(languages || []).map((lang) => ({*/}
+        {/*        ...lang,*/}
+        {/*        onClick: () =>*/}
+        {/*            setSelectedLanguage(lang.label ? lang.label.toString() : ""),*/}
+        {/*      })),*/}
+        {/*    ]}*/}
+        {/*/>*/}
 
-          {/*<Custom*/}
-          {/*    label={selectedGenre || "Genre"}*/}
-          {/*    color="lilla"*/}
-          {/*    size="small"*/}
-          {/*    type="dropdown"*/}
-          {/*    options={[*/}
-          {/*      { label: "Alle Genres", onClick: () => setSelectedGenre("") },*/}
-          {/*      ...(genres || []).map((genre) => ({*/}
-          {/*        ...genre,*/}
-          {/*        onClick: () =>*/}
-          {/*            setSelectedGenre(genre.label ? genre.label.toString() : ""),*/}
-          {/*      })),*/}
-          {/*    ]}*/}
-          {/*/>*/}
-        </div>
-
-        <div className="flex flex-wrap gap-12">
-          {filteredOffers.map((offer) => (
-              <OfferTeaser
-                  key={offer.id}
-                  id={offer.id}
-                  image={offer.image}
-                  title={offer.title}
-                  author={offer.author}
-                  tags={offer.tags}
-                  postCode={offer.postCode}
-                  city={offer.city}
-                  price={offer.price}
-                  condition={offer.condition}
-                  size="small"
-              />
-          ))}
-        </div>
+        {/*<Custom*/}
+        {/*    label={selectedGenre || "Genre"}*/}
+        {/*    color="lilla"*/}
+        {/*    size="small"*/}
+        {/*    type="dropdown"*/}
+        {/*    options={[*/}
+        {/*      { label: "Alle Genres", onClick: () => setSelectedGenre("") },*/}
+        {/*      ...(genres || []).map((genre) => ({*/}
+        {/*        ...genre,*/}
+        {/*        onClick: () =>*/}
+        {/*            setSelectedGenre(genre.label ? genre.label.toString() : ""),*/}
+        {/*      })),*/}
+        {/*    ]}*/}
+        {/*/>*/}
       </div>
+
+      <div className="flex flex-wrap gap-12">
+        {filteredOffers.map((offer) => (
+          <OfferTeaser
+            key={offer.id}
+            id={offer.id}
+            image={offer.image}
+            title={offer.title}
+            author={offer.author}
+            tags={offer.tags}
+            postCode={offer.postCode}
+            city={offer.city}
+            price={offer.price}
+            condition={offer.condition}
+            size="small"
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 
