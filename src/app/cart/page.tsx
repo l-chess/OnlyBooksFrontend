@@ -33,6 +33,7 @@ const CartPage = () => {
     const updated = cart.filter((item) => item.id !== id);
     setCart(updated);
     localStorage.setItem("cart", JSON.stringify(updated));
+    window.dispatchEvent(new Event("cartChanged"));
   };
 
   const updateQuantity = (id: number, delta: number) => {
@@ -42,11 +43,13 @@ const CartPage = () => {
 
     setCart(updated);
     localStorage.setItem("cart", JSON.stringify(updated));
+    window.dispatchEvent(new Event("cartChanged"));
   };
 
   const clearCart = () => {
     setCart([]);
     localStorage.removeItem("cart");
+    window.dispatchEvent(new Event("cartChanged"));
   };
 
   const submitOrder = () => {

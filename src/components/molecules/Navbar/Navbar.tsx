@@ -38,7 +38,7 @@ export const Navbar = () => {
         <Logo />
       </div>
       <div>
-        <Searchbar />
+        {/*<Searchbar />*/}
       </div>
       <div className="flex flex-1 items-center justify-end gap-2">
         <UploadButton />
