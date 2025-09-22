@@ -27,6 +27,7 @@ export const Default: Story = {
       },
       title: "The Song of Achilles",
       author: "Madeline Miller",
+      tags: ["Englisch"],
       postCode: "12345",
       city: "Hamburg",
       price: 5,

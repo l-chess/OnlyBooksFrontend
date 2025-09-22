@@ -7,7 +7,7 @@ export type OfferTeaserProps = {
   image: ImageProps;
   title: string;
   author: string;
-  tags?: string[];
+  tags: string[];
   postCode: string;
   city: string;
   price: number | "Tauschen";
