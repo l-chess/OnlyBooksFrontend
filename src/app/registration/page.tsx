@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Input } from "@/src/components/atoms/Input/Input";
+import { Custom } from "@/src/components/molecules/Custom/Custom";
 
 const Registration = () => {
   const [username, setUsername] = useState("");
@@ -69,15 +70,15 @@ const Registration = () => {
             type="password"
           />
         </div>
+        <Custom
+          type="button"
+          onClick={handleRegister}
+          label="Registrieren"
+          size="medium"
+          color="lilla"
+          width="w-full justify-center"
+        />
       </div>
-
-      <button
-        type="button"
-        onClick={handleRegister}
-        className="mt-2 w-full rounded bg-purple-800 px-4 py-2 text-white hover:bg-purple-700"
-      >
-        Registrieren
-      </button>
 
       {message && <p className="mt-2 text-gray-600 text-sm">{message}</p>}
 

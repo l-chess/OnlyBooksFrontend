@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-// @ts-expect-error
-import OfferDetail from "./page";
+import OfferPage from "./page";
 
 const meta = {
-  title: "Pages/OfferDetail",
-  component: OfferDetail,
+  title: "Pages/OfferPage",
+  component: OfferPage,
   tags: ["autodocs"],
   decorators: [
     (Story) => (
@@ -13,7 +12,7 @@ const meta = {
       </div>
     ),
   ],
-} satisfies Meta<typeof OfferDetail>;
+} satisfies Meta<typeof OfferPage>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

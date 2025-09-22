@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { MdLanguage } from "react-icons/md";
-import type { OfferDetailType } from "@/src/app/offer/[id]/page";
+import type { OfferDetailType } from "@/src/app/offer/page";
 import { Input } from "../components/atoms/Input/Input";
 import type { Option } from "../components/atoms/OptionsDropdown/OptionsDropdown";
 import { Custom } from "../components/molecules/Custom/Custom";

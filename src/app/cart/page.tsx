@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Custom } from "../../components/molecules/Custom/Custom";
-import type { OfferDetailType } from "../offer/[id]/page";
+import type { OfferDetailType } from "../offer/page";
 
 type CartItem = OfferDetailType & { quantity?: number };
 

@@ -6,7 +6,6 @@ import { LuShoppingCart } from "react-icons/lu";
 import { Logo } from "../../atoms/Logo/Logo";
 import { UploadButton } from "../../atoms/UploadButton/UploadButton";
 import { ProfileButton } from "../ProfileButton/ProfileButton";
-import { Searchbar } from "../Searchbar/Searchbar";
 
 export const Navbar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
