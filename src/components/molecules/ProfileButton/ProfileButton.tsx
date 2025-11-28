@@ -8,6 +8,8 @@ export type ProfileButtonProps = {
 };
 
 export const ProfileButton = ({ authenticated }: ProfileButtonProps) => {
+  const [showDropdown, setShowDropdown] = useState(false);
+
   const options = () => {
     if (authenticated) {
       return [
@@ -17,12 +19,21 @@ export const ProfileButton = ({ authenticated }: ProfileButtonProps) => {
         },
         {
           label: (
-            <p className="flex items-center gap-1">
+            <button
+              type="button"
+              className="flex items-center gap-1"
+              onClick={() => {
+                localStorage.removeItem("isAuthenticated");
+                localStorage.removeItem("username");
+                localStorage.removeItem("cart");
+                window.location.href = "/login";
+              }}
+            >
               <IoLogOutOutline />
               Ausloggen
-            </p>
+            </button>
           ),
-          href: "/",
+          href: "#",
         },
       ];
     } else {
@@ -38,8 +49,6 @@ export const ProfileButton = ({ authenticated }: ProfileButtonProps) => {
       ];
     }
   };
-
-  const [showDropdown, setShowDropdown] = useState(false);
 
   return (
     <div className="relative w-fit">

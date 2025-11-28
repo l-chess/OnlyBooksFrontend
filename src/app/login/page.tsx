@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Input } from "@/src/components/atoms/Input/Input";
+import { Custom } from "@/src/components/molecules/Custom/Custom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -11,7 +12,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/auth/einloggen", {
+      const response = await fetch("http://localhost:8080/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -19,8 +20,11 @@ const Login = () => {
 
       if (response.ok) {
         const user = await response.json();
+        localStorage.setItem("isAuthenticated", "true");
+        localStorage.setItem("username", user.username);
+        window.dispatchEvent(new Event("authChanged"));
+        window.location.href = "/";
         setMessage(`Willkommen zurück, ${user.username}! 🎉`);
-        // 👉 hier könntest du später Token speichern oder redirecten
       } else {
         setMessage("Benutzername oder Passwort falsch!");
       }
@@ -49,15 +53,15 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           type="password"
         />
+        <Custom
+          type="button"
+          onClick={handleLogin}
+          label="Einloggen"
+          size="medium"
+          color="lilla"
+          width="w-full justify-center"
+        />
       </div>
-
-      <button
-        type="button"
-        onClick={handleLogin}
-        className="mt-4 w-full rounded bg-purple-800 px-4 py-2 text-white hover:bg-purple-700"
-      >
-        Einloggen
-      </button>
 
       {message && <p className="mt-2 text-gray-600 text-sm">{message}</p>}
 

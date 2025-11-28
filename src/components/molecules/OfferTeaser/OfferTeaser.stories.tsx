@@ -12,6 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Small: Story = {
   args: {
+    id: 1,
     title: "The Song of Achilles",
     className: "w-50",
     author: "Madeline Miller",
@@ -31,6 +32,7 @@ export const Small: Story = {
 
 export const Medium: Story = {
   args: {
+    id: 1,
     title: "The Song of Achilles",
     className: "w-screen",
     author: "Madeline Miller",

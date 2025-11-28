@@ -29,6 +29,7 @@ export const Default: Story = {
     ],
     offers: [
       {
+        id: 1,
         title: "The Song of Achilles",
         author: "Madeline Miller",
         tags: ["Englisch", "LGBTQ+"],
@@ -44,6 +45,7 @@ export const Default: Story = {
         size: "medium",
       },
       {
+        id: 1,
         title: "The Song of Achilles",
         author: "Madeline Miller",
         tags: ["Englisch", "LGBTQ+"],
@@ -59,6 +61,7 @@ export const Default: Story = {
         size: "medium",
       },
       {
+        id: 1,
         title: "The Song of Achilles",
         author: "Madeline Miller",
         tags: ["Englisch", "LGBTQ+"],
@@ -74,6 +77,7 @@ export const Default: Story = {
         size: "medium",
       },
       {
+        id: 1,
         title: "The Song of Achilles",
         author: "Madeline Miller",
         tags: ["Englisch", "LGBTQ+"],

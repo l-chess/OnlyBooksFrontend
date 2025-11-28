@@ -1,67 +1,96 @@
-import { MdLanguage } from "react-icons/md";
-import type { Option } from "../components/atoms/OptionsDropdown/OptionsDropdown";
-import { Custom } from "../components/molecules/Custom/Custom";
+"use client";
+
+import { useEffect, useState } from "react";
+import { IoSearchSharp } from "react-icons/io5";
+import { Input } from "../components/atoms/Input/Input";
 import {
   OfferTeaser,
   type OfferTeaserProps,
 } from "../components/molecules/OfferTeaser/OfferTeaser";
 
-export type HomepageProps = {
-  languages: Option[];
-  genres: Option[];
-  offers: OfferTeaserProps[];
-};
+const Homepage = () => {
+  const [offers, setOffers] = useState<OfferTeaserProps[]>([]);
+  const [filteredOffers, setFilteredOffers] = useState<OfferTeaserProps[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedLanguage, _setSelectedLanguage] = useState("");
+  const [selectedGenre, _setSelectedGenre] = useState("");
 
-const Homepage = ({ languages, genres, offers }: HomepageProps) => {
+  // biome-ignore lint/correctness/useExhaustiveDependencies: parsePrice & parseCondition sind statisch
+  useEffect(() => {
+    fetch("http://localhost:8080/api/books")
+      .then((res) => res.json())
+      .then((data: OfferTeaserProps[]) => {
+        const mappedOffers = data.map((book) => ({
+          id: book.id,
+          title: book.title,
+          author: book.author,
+          image: book.image
+            ? { src: `data:image/jpeg;base64,${book.image}`, alt: book.title }
+            : { src: "/default-cover.jpg", alt: "Kein Bild verfügbar" },
+          price: book.price,
+          condition: parseCondition(book.condition),
+          tags: book.tags ? book.tags : [],
+          postCode: book.postCode || "",
+          city: book.city || "",
+          size: "small" as "small",
+        }));
+        setOffers(mappedOffers);
+        setFilteredOffers(mappedOffers);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    let temp = offers;
+
+    if (selectedLanguage) temp = temp.filter((o) => o.tags?.includes(selectedLanguage));
+    if (selectedGenre) temp = temp.filter((o) => o.tags?.includes(selectedGenre));
+    if (searchTerm) {
+      const term = searchTerm.toLowerCase();
+      temp = temp.filter(
+        (o) => o.title.toLowerCase().includes(term) || o.author.toLowerCase().includes(term)
+      );
+    }
+
+    setFilteredOffers(temp);
+  }, [offers, selectedLanguage, selectedGenre, searchTerm]);
+
+  const parseCondition = (
+    cond?: string
+  ): "Wie neu" | "Leichte Gebrauchsspuren" | "Gebraucht" | "Kaputt" => {
+    switch (cond) {
+      case "Wie neu":
+        return "Wie neu";
+      case "Leichte Gebrauchsspuren":
+        return "Leichte Gebrauchsspuren";
+      case "Gebraucht":
+        return "Gebraucht";
+      case "Kaputt":
+        return "Kaputt";
+      default:
+        return "Gebraucht";
+    }
+  };
+
   return (
     <div className="w-full space-y-4">
-      <div className="flex gap-2">
-        <div className="w-fit">
-          <Custom
-            label="Sprache"
-            iconLeft={<MdLanguage />}
-            color="lilla"
-            size="small"
-            type="dropdown"
-            options={languages}
-          />
-        </div>
-        <div className="w-fit">
-          <Custom label="Genre" color="lilla" size="small" type="dropdown" options={genres} />
-        </div>
-        <div className="w-fit">
-          <Custom
-            label="Entfernung"
-            color="lilla"
-            size="small"
-            type="dropdown"
-            options={[
-              { label: "< 10km", href: "" },
-              { label: "< 50km", href: "" },
-              { label: "< 100km", href: "" },
-              { label: "> 100km", href: "" },
-            ]}
-          />
-        </div>
-        <div className="w-fit">
-          <Custom
-            label="Tauschen und Kaufen"
-            color="lilla"
-            size="small"
-            type="dropdown"
-            options={[
-              { label: "Tauschen", href: "" },
-              { label: "Kaufen", href: "" },
-              { label: "Tauschen und Kaufen", href: "" },
-            ]}
-          />
-        </div>
+      <div className="ml-10 flex items-center gap-4">
+        <Input
+          type="text"
+          placeholder="Suche"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          variant="framed"
+          size="small"
+          iconLeft={<IoSearchSharp className="text-xl" />}
+        />
       </div>
 
       <div className="flex flex-wrap gap-12">
-        {offers.map((offer, index) => (
+        {filteredOffers.map((offer) => (
           <OfferTeaser
-            key={index}
+            key={offer.id}
+            id={offer.id}
             image={offer.image}
             title={offer.title}
             author={offer.author}
