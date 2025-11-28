@@ -27,13 +27,19 @@ export type OfferDetailType = {
 };
 
 const OfferPage = () => {
-  const { id } = useParams();
+  const rawId = useParams()?.id;
+  const id: string | undefined = Array.isArray(rawId) ? rawId[0] : rawId;
+
   const [offer, setOffer] = useState<OfferDetailType | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (!id) return;
+    if (!id) {
+      setLoading(false);
+      setError(true);
+      return;
+    }
 
     (async () => {
       try {
