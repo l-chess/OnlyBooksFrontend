@@ -5,9 +5,10 @@ import { Checkbox } from "@/src/components/atoms/Checkbox/Checkbox";
 import { Input } from "@/src/components/atoms/Input/Input";
 import { Custom } from "@/src/components/molecules/Custom/Custom";
 import { ImageUpload } from "@/src/components/molecules/ImageUpload/ImageUpload";
+import { useAuth } from "@/src/utils/utils";
 
 const Upload = () => {
-  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+  const isAuthenticated = useAuth();
 
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");

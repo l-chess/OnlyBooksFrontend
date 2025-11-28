@@ -2,61 +2,34 @@
 
 import { useEffect, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
-import { MdLanguage } from "react-icons/md";
-import type { OfferDetailType } from "@/src/app/offer/page";
 import { Input } from "../components/atoms/Input/Input";
-import type { Option } from "../components/atoms/OptionsDropdown/OptionsDropdown";
-import { Custom } from "../components/molecules/Custom/Custom";
 import {
   OfferTeaser,
   type OfferTeaserProps,
 } from "../components/molecules/OfferTeaser/OfferTeaser";
 
-interface Book {
-  id: number;
-  title: string;
-  author: string;
-  coverImage?: string;
-  price?: string;
-  condition?: string;
-  tags?: string;
-  postCode?: string;
-  city?: string;
-}
-
-export type HomepageProps = {
-  languages: Option[];
-  genres: Option[];
-  offers?: OfferDetailType[];
-  searchTerm?: string;
-};
-
-const Homepage = ({
-  languages = [],
-  genres = [],
-  searchTerm: initialSearchTerm = "",
-}: HomepageProps) => {
+const Homepage = () => {
   const [offers, setOffers] = useState<OfferTeaserProps[]>([]);
   const [filteredOffers, setFilteredOffers] = useState<OfferTeaserProps[]>([]);
-  const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
-  const [selectedLanguage, setSelectedLanguage] = useState("");
-  const [selectedGenre, setSelectedGenre] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedLanguage, _setSelectedLanguage] = useState("");
+  const [selectedGenre, _setSelectedGenre] = useState("");
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: parsePrice & parseCondition sind statisch
   useEffect(() => {
     fetch("http://localhost:8080/api/books")
       .then((res) => res.json())
-      .then((data: Book[]) => {
+      .then((data: OfferTeaserProps[]) => {
         const mappedOffers = data.map((book) => ({
           id: book.id,
           title: book.title,
           author: book.author,
-          image: book.coverImage
-            ? { src: `data:image/jpeg;base64,${book.coverImage}`, alt: book.title }
+          image: book.image
+            ? { src: `data:image/jpeg;base64,${book.image}`, alt: book.title }
             : { src: "/default-cover.jpg", alt: "Kein Bild verfügbar" },
-          price: parsePrice(book.price),
+          price: book.price,
           condition: parseCondition(book.condition),
-          tags: book.tags ? book.tags.split(",") : [],
+          tags: book.tags ? book.tags : [],
           postCode: book.postCode || "",
           city: book.city || "",
           size: "small" as "small",
@@ -81,12 +54,6 @@ const Homepage = ({
 
     setFilteredOffers(temp);
   }, [offers, selectedLanguage, selectedGenre, searchTerm]);
-
-  const parsePrice = (price?: string): number | "Tauschen" => {
-    if (!price) return "Tauschen";
-    const n = Number(price);
-    return Number.isNaN(n) ? "Tauschen" : n;
-  };
 
   const parseCondition = (
     cond?: string
@@ -117,37 +84,6 @@ const Homepage = ({
           size="small"
           iconLeft={<IoSearchSharp className="text-xl" />}
         />
-
-        {/*<Custom*/}
-        {/*    label={selectedLanguage || "Sprache"}*/}
-        {/*    iconLeft={<MdLanguage />}*/}
-        {/*    color="lilla"*/}
-        {/*    size="small"*/}
-        {/*    type="dropdown"*/}
-        {/*    options={[*/}
-        {/*      { label: "Alle Sprachen", onClick: () => setSelectedLanguage("") },*/}
-        {/*      ...(languages || []).map((lang) => ({*/}
-        {/*        ...lang,*/}
-        {/*        onClick: () =>*/}
-        {/*            setSelectedLanguage(lang.label ? lang.label.toString() : ""),*/}
-        {/*      })),*/}
-        {/*    ]}*/}
-        {/*/>*/}
-
-        {/*<Custom*/}
-        {/*    label={selectedGenre || "Genre"}*/}
-        {/*    color="lilla"*/}
-        {/*    size="small"*/}
-        {/*    type="dropdown"*/}
-        {/*    options={[*/}
-        {/*      { label: "Alle Genres", onClick: () => setSelectedGenre("") },*/}
-        {/*      ...(genres || []).map((genre) => ({*/}
-        {/*        ...genre,*/}
-        {/*        onClick: () =>*/}
-        {/*            setSelectedGenre(genre.label ? genre.label.toString() : ""),*/}
-        {/*      })),*/}
-        {/*    ]}*/}
-        {/*/>*/}
       </div>
 
       <div className="flex flex-wrap gap-12">

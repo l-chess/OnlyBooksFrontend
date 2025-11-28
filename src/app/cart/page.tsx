@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useAuth } from "@/src/utils/utils";
 import { Custom } from "../../components/molecules/Custom/Custom";
 import type { OfferDetailType } from "../offer/page";
 
@@ -15,7 +16,7 @@ const CartPage = () => {
   const [city, setCity] = useState("");
   const [orderMessage, setOrderMessage] = useState("");
 
-  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+  const isAuthenticated = useAuth();
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart") || "[]");
