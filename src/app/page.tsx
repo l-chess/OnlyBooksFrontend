@@ -30,6 +30,7 @@ const Homepage = () => {
           price: book.price,
           condition: parseCondition(book.condition),
           tags: book.tags ? book.tags : [],
+          language: book.language,
           postCode: book.postCode || "",
           city: book.city || "",
           size: "small" as "small",
@@ -95,6 +96,7 @@ const Homepage = () => {
             title={offer.title}
             author={offer.author}
             tags={offer.tags}
+            language={offer.language}
             postCode={offer.postCode}
             city={offer.city}
             price={offer.price}

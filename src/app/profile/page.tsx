@@ -87,6 +87,7 @@ const Profile = ({ name, creationDate, totalOffers, ratings }: ProfileProps) => 
               title={offer.title}
               author={offer.author}
               tags={offer.tags}
+              language={offer.language}
               postCode={offer.postCode}
               city={offer.city}
               price={offer.price}

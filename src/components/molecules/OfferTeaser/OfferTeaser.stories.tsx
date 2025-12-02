@@ -16,7 +16,8 @@ export const Small: Story = {
     title: "The Song of Achilles",
     className: "w-50",
     author: "Madeline Miller",
-    tags: ["Englisch", "LGBTQ+"],
+    tags: ["LGBTQ+"],
+    language: "Englisch",
     postCode: "12345",
     city: "Hamburg",
     price: 5,
@@ -24,8 +25,8 @@ export const Small: Story = {
     image: {
       src: "https://booklounge.co.za/wp-content/uploads/2022/08/the-song-of-achilles-1.jpg",
       alt: "The Song of Achilles Book Cover",
-      className: "w-50",
     },
+    imageClassname: "w-50",
     size: "small",
   },
 };
@@ -36,7 +37,8 @@ export const Medium: Story = {
     title: "The Song of Achilles",
     className: "w-screen",
     author: "Madeline Miller",
-    tags: ["Englisch", "LGBTQ+"],
+    tags: ["LGBTQ+"],
+    language: "Englisch",
     postCode: "12345",
     city: "Hamburg",
     price: 5,
@@ -44,8 +46,8 @@ export const Medium: Story = {
     image: {
       src: "https://booklounge.co.za/wp-content/uploads/2022/08/the-song-of-achilles-1.jpg",
       alt: "The Song of Achilles Book Cover",
-      className: "w-50",
     },
+    imageClassname: "w-50",
     size: "medium",
   },
 };
