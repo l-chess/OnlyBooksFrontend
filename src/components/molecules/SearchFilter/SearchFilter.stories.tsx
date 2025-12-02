@@ -20,5 +20,6 @@ export const Default: Story = {
       { label: "Gebraucht", href: "" },
       { label: "Kaputt", href: "" },
     ],
+    onFilterChange: () => {},
   },
 };

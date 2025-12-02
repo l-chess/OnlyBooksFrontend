@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaChevronLeft } from "react-icons/fa6";
 import { Checkbox } from "../../atoms/Checkbox/Checkbox";
 import { Input } from "../../atoms/Input/Input";
@@ -8,11 +8,37 @@ import { Custom } from "../Custom/Custom";
 export type SearchFilterProps = {
   languages: string[];
   condition: Option[];
+  onFilterChange: (filters: {
+    languages: string[];
+    swap: boolean;
+    buy: boolean;
+    minPrice?: number;
+    maxPrice?: number;
+    distance?: number;
+    condition?: string;
+  }) => void;
 };
 
-export const SearchFilter = ({ languages, condition }: SearchFilterProps) => {
+export const SearchFilter = ({ languages, condition, onFilterChange }: SearchFilterProps) => {
   const [swap, setSwapped] = useState(true);
   const [buy, setBuy] = useState(true);
+  const [selectedLangs, setSelectedLangs] = useState(languages);
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    onFilterChange({ languages: selectedLangs, swap: swap, buy: buy });
+  }, [buy, swap]);
+
+  const filterLangs = (language: string) => {
+    const copy = selectedLangs.map((lang) => lang);
+    if (selectedLangs.includes(language)) {
+      copy.splice(copy.indexOf(language), 1);
+    } else {
+      copy.push(language);
+    }
+    onFilterChange({ languages: copy, swap, buy });
+    setSelectedLangs(copy);
+  };
 
   return (
     <div className="space-y-2">
@@ -55,7 +81,12 @@ export const SearchFilter = ({ languages, condition }: SearchFilterProps) => {
 
       <span>Sprache:</span>
       {languages.map((language, index) => (
-        <Checkbox key={index} label={language} checked={true} />
+        <Checkbox
+          key={index}
+          label={language}
+          checked={selectedLangs.includes(language)}
+          onClick={() => filterLangs(language)}
+        />
       ))}
     </div>
   );
