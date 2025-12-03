@@ -14,6 +14,7 @@ const Homepage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLanguage, _setSelectedLanguage] = useState("");
   const [selectedGenre, _setSelectedGenre] = useState("");
+  const [error, setError] = useState(false);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: parsePrice & parseCondition sind statisch
   useEffect(() => {
@@ -38,7 +39,9 @@ const Homepage = () => {
         setOffers(mappedOffers);
         setFilteredOffers(mappedOffers);
       })
-      .catch((err) => console.error(err));
+      .catch(() => {
+        setError(true);
+      });
   }, []);
 
   useEffect(() => {
@@ -73,6 +76,11 @@ const Homepage = () => {
     }
   };
 
+  if (error) {
+    return (
+      <div className="w-full p-10 text-center text-xl">Seite konnte nicht geladen werden.</div>
+    );
+  }
   return (
     <div className="w-full space-y-4">
       <div className="ml-10 flex items-center gap-4">
