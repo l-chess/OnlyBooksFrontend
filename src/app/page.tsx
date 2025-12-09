@@ -18,7 +18,6 @@ const Homepage = () => {
   const [error, setError] = useState(false);
 
   // Get data from backend
-  // biome-ignore lint/correctness/useExhaustiveDependencies: parsePrice & parseCondition sind statisch
   useEffect(() => {
     fetch("http://localhost:8080/api/books")
       .then((res) => res.json())
@@ -31,8 +30,8 @@ const Homepage = () => {
             ? { src: `data:image/jpeg;base64,${book.image}`, alt: book.title }
             : { src: "/default-cover.jpg", alt: "Kein Bild verfügbar" },
           price: book.price,
-          condition: parseCondition(book.condition),
-          tags: book.tags ? book.tags : [],
+          condition: book.condition,
+          genre: book.genre, // map genre from backend
           language: book.language,
           postCode: book.postCode || "",
           city: book.city || "",
@@ -46,11 +45,12 @@ const Homepage = () => {
       });
   }, []);
 
+  // Filter offers
   useEffect(() => {
     let temp = offers;
 
     if (selectedLanguage) temp = temp.filter((o) => o.language === selectedLanguage);
-    if (selectedGenre) temp = temp.filter((o) => o.tags?.includes(selectedGenre));
+    if (selectedGenre) temp = temp.filter((o) => o.genre === selectedGenre); // filter by genre
     if (searchTerm) {
       const term = searchTerm.toLowerCase();
       temp = temp.filter(
@@ -61,28 +61,12 @@ const Homepage = () => {
     setFilteredOffers(temp);
   }, [offers, selectedLanguage, selectedGenre, searchTerm]);
 
-  const parseCondition = (
-    cond?: string
-  ): "Wie neu" | "Leichte Gebrauchsspuren" | "Gebraucht" | "Kaputt" => {
-    switch (cond) {
-      case "Wie neu":
-        return "Wie neu";
-      case "Leichte Gebrauchsspuren":
-        return "Leichte Gebrauchsspuren";
-      case "Gebraucht":
-        return "Gebraucht";
-      case "Kaputt":
-        return "Kaputt";
-      default:
-        return "Gebraucht";
-    }
-  };
-
   if (error) {
     return (
       <div className="w-full p-10 text-center text-xl">Seite konnte nicht geladen werden.</div>
     );
   }
+
   return (
     <div className="w-full space-y-4">
       <div className="ml-10 flex items-center gap-4">
@@ -100,7 +84,7 @@ const Homepage = () => {
       <HomepageFilter
         offers={offers}
         onSelectLanguage={setSelectedLanguage}
-        onSelectTag={setSelectedGenre}
+        onSelectTag={setSelectedGenre} // still works, just maps to genre now
       />
 
       <div className="flex flex-wrap gap-12">
@@ -111,7 +95,7 @@ const Homepage = () => {
               image={offer.image}
               title={offer.title}
               author={offer.author}
-              tags={offer.tags}
+              genre={offer.genre} // pass genre directly
               language={offer.language}
               postCode={offer.postCode}
               city={offer.city}

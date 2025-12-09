@@ -47,10 +47,10 @@ export const SearchPage = ({ results }: SearchPageProps) => {
               id={offer.id}
               image={offer.image}
               title={offer.title}
-              tags={offer.tags}
-              language={offer.language}
-              condition={offer.condition}
               author={offer.author}
+              language={offer.language}
+              genre={offer.genre} // now pass genre
+              condition={offer.condition}
               postCode={offer.postCode}
               city={offer.city}
               price={offer.price}

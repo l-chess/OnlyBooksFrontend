@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/src/utils/utils";
 import { Custom } from "../../components/molecules/Custom/Custom";
-import type { OfferDetailType } from "../offer/page";
+import type { OfferDetailType } from "../offer/[id]/page";
 
 type CartItem = OfferDetailType & { quantity?: number };
 

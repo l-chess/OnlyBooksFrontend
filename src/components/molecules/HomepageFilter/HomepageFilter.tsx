@@ -5,12 +5,16 @@ import type { OfferTeaserProps } from "../OfferTeaser/OfferTeaser";
 export type HomepageFilterProps = {
   offers: OfferTeaserProps[];
   onSelectLanguage?: (language: string) => void;
-  onSelectTag?: (tag: string) => void;
+  onSelectTag?: (tag: string) => void; // still called onSelectTag for consistency
 };
 
 export const HomepageFilter = ({ offers, onSelectLanguage, onSelectTag }: HomepageFilterProps) => {
   const languages = [...new Set(offers.map((o) => o.language))].sort((a, b) => a.localeCompare(b));
-  const tags = [...new Set(offers.flatMap((o) => o.tags ?? []))].sort((a, b) => a.localeCompare(b));
+
+  // Get unique genres instead of tags
+  const genres = [...new Set(offers.map((o) => o.genre).filter(Boolean))].sort((a, b) =>
+    a.localeCompare(b)
+  );
 
   const languageOptions = [
     {
@@ -23,14 +27,14 @@ export const HomepageFilter = ({ offers, onSelectLanguage, onSelectTag }: Homepa
     })),
   ];
 
-  const tagOptions = [
+  const genreOptions = [
     {
       label: "Alle Genres",
-      onClick: () => onSelectTag?.(""), // resets the tag filter
+      onClick: () => onSelectTag?.(""), // resets the genre filter
     },
-    ...tags.map((tag) => ({
-      label: tag,
-      onClick: () => onSelectTag?.(tag),
+    ...genres.map((genre) => ({
+      label: genre,
+      onClick: () => onSelectTag?.(genre),
     })),
   ];
 
@@ -49,7 +53,7 @@ export const HomepageFilter = ({ offers, onSelectLanguage, onSelectTag }: Homepa
       </div>
       {/* genre filter */}
       <div className="flex-none">
-        <Custom type="dropdown" label="Genre" color="lilla" size="small" options={tagOptions} />
+        <Custom type="dropdown" label="Genre" color="lilla" size="small" options={genreOptions} />
       </div>
       {/* distance filter */}
       <div className="flex-none">

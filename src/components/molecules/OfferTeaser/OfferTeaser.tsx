@@ -9,7 +9,7 @@ export type OfferTeaserProps = {
   imageClassname?: string;
   title: string;
   author: string;
-  tags?: string[];
+  genre: string; // only genre
   language: string;
   postCode: string;
   city: string;
@@ -26,7 +26,7 @@ export const OfferTeaser = ({
   imageClassname,
   title,
   author,
-  tags,
+  genre, // get genre from props
   language,
   postCode,
   city,
@@ -34,12 +34,15 @@ export const OfferTeaser = ({
   condition,
   size = "medium",
 }: OfferTeaserProps) => {
-  const displayedTags = [language, ...(tags ?? [])];
+  // Combine language and genre for display
+  const displayedTags = [language, ...(genre ? [genre] : [])];
 
   return (
     <Link
       href={`/offer/${id}`}
-      className={`group flex cursor-pointer ${size === "small" ? "flex-col gap-1 text-center" : "items-center"} ${className}`}
+      className={`group flex cursor-pointer ${
+        size === "small" ? "flex-col gap-1 text-center" : "items-center"
+      } ${className}`}
     >
       <Image src={image.src} alt={title} className={imageClassname} />
       <div className={size === "medium" ? "space-y-2" : ""}>
@@ -47,7 +50,9 @@ export const OfferTeaser = ({
         <h2 className="text-lg group-hover:underline">{author}</h2>
 
         <div
-          className={`flex gap-1 overflow-hidden ${size === "small" ? "max-h-16 flex-wrap justify-center" : "max-h-7"}`}
+          className={`flex gap-1 overflow-hidden ${
+            size === "small" ? "max-h-16 flex-wrap justify-center" : "max-h-7"
+          }`}
         >
           {displayedTags?.map((tag, index) => (
             <div key={index} className="flex-none">

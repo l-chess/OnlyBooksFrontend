@@ -86,7 +86,7 @@ const Profile = ({ name, creationDate, totalOffers, ratings }: ProfileProps) => 
               image={offer.image}
               title={offer.title}
               author={offer.author}
-              tags={offer.tags}
+              genre={offer.genre} // changed from tags to genre
               language={offer.language}
               postCode={offer.postCode}
               city={offer.city}
