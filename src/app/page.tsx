@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { Input } from "../components/atoms/Input/Input";
+import { HomepageFilter } from "../components/molecules/HomepageFilter/HomepageFilter";
 import {
   OfferTeaser,
   type OfferTeaserProps,
@@ -12,10 +13,11 @@ const Homepage = () => {
   const [offers, setOffers] = useState<OfferTeaserProps[]>([]);
   const [filteredOffers, setFilteredOffers] = useState<OfferTeaserProps[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedLanguage, _setSelectedLanguage] = useState("");
-  const [selectedGenre, _setSelectedGenre] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("");
   const [error, setError] = useState(false);
 
+  // Get data from backend
   // biome-ignore lint/correctness/useExhaustiveDependencies: parsePrice & parseCondition sind statisch
   useEffect(() => {
     fetch("http://localhost:8080/api/books")
@@ -47,7 +49,7 @@ const Homepage = () => {
   useEffect(() => {
     let temp = offers;
 
-    if (selectedLanguage) temp = temp.filter((o) => o.tags?.includes(selectedLanguage));
+    if (selectedLanguage) temp = temp.filter((o) => o.language === selectedLanguage);
     if (selectedGenre) temp = temp.filter((o) => o.tags?.includes(selectedGenre));
     if (searchTerm) {
       const term = searchTerm.toLowerCase();
@@ -95,22 +97,29 @@ const Homepage = () => {
         />
       </div>
 
+      <HomepageFilter
+        offers={offers}
+        onSelectLanguage={setSelectedLanguage}
+        onSelectTag={setSelectedGenre}
+      />
+
       <div className="flex flex-wrap gap-12">
-        {filteredOffers.map((offer) => (
-          <OfferTeaser
-            key={offer.id}
-            id={offer.id}
-            image={offer.image}
-            title={offer.title}
-            author={offer.author}
-            tags={offer.tags}
-            language={offer.language}
-            postCode={offer.postCode}
-            city={offer.city}
-            price={offer.price}
-            condition={offer.condition}
-            size="small"
-          />
+        {filteredOffers.map((offer, id) => (
+          <div key={id} className="w-50">
+            <OfferTeaser
+              id={offer.id}
+              image={offer.image}
+              title={offer.title}
+              author={offer.author}
+              tags={offer.tags}
+              language={offer.language}
+              postCode={offer.postCode}
+              city={offer.city}
+              price={offer.price}
+              condition={offer.condition}
+              size="small"
+            />
+          </div>
         ))}
       </div>
     </div>

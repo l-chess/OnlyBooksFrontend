@@ -41,7 +41,7 @@ export const OfferTeaser = ({
       href={`/offer/${id}`}
       className={`group flex cursor-pointer ${size === "small" ? "flex-col gap-1 text-center" : "items-center"} ${className}`}
     >
-      <Image src={image.src} alt={image.alt} className={imageClassname} />
+      <Image src={image.src} alt={title} className={imageClassname} />
       <div className={size === "medium" ? "space-y-2" : ""}>
         <h1 className="font-semibold text-xl group-hover:underline">{title}</h1>
         <h2 className="text-lg group-hover:underline">{author}</h2>
