@@ -68,8 +68,8 @@ const Homepage = () => {
   }
 
   return (
-    <div className="w-full space-y-4">
-      <div className="ml-10 flex items-center gap-4">
+    <div className="w-full space-y-4 px-4">
+      <div className="mx-auto md:w-full lg:w-2xl">
         <Input
           type="text"
           placeholder="Suche"
@@ -87,9 +87,9 @@ const Homepage = () => {
         onSelectTag={setSelectedGenre} // still works, just maps to genre now
       />
 
-      <div className="flex flex-wrap gap-12">
+      <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
         {filteredOffers.map((offer, id) => (
-          <div key={id} className="w-50">
+          <div key={id} className="w-full">
             <OfferTeaser
               id={offer.id}
               image={offer.image}

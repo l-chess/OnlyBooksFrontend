@@ -39,7 +39,7 @@ export const HomepageFilter = ({ offers, onSelectLanguage, onSelectTag }: Homepa
   ];
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 overflow-x-scroll">
       {/* language filter */}
       <div className="flex-none">
         <Custom
