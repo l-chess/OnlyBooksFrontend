@@ -82,7 +82,7 @@ const OfferPage = () => {
   };
 
   return (
-    <div className="mx-auto flex w-11/12 flex-col gap-8 md:w-2/3">
+    <div className="flex flex-col gap-8 sm:w-full sm:px-4 lg:mx-auto lg:w-2/3">
       <div className="flex flex-col gap-6 md:flex-row">
         <div className="flex flex-1 justify-center">
           <Image
