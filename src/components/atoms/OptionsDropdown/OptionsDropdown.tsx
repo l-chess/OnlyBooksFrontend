@@ -15,7 +15,7 @@ export type OptionsDropdownProps = {
 export const OptionsDropdown = ({ options, width = "max-w-fit" }: OptionsDropdownProps) => {
   return (
     <div
-      className={`${width} max-h-50 overflow-y-scroll rounded-lg border-2 border-gray-400 bg-white px-2 text-center font-semibold text-gray-400`}
+      className={`${width} max-h-50 w-fit overflow-y-scroll rounded-lg border-2 border-gray-400 bg-white px-2 text-center font-semibold text-gray-400`}
     >
       {options.map((option, index) => {
         const isLast = index === options.length - 1;
