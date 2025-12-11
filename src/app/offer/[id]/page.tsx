@@ -19,7 +19,6 @@ export type OfferDetailType = {
   year?: string;
   pages?: string;
   isbn?: string;
-  tags?: string[];
   description?: string;
   coverImage?: string;
   image?: { src: string; alt: string; className?: string };
@@ -82,7 +81,7 @@ const OfferPage = () => {
   };
 
   return (
-    <div className="flex flex-col gap-8 sm:w-full sm:px-4 lg:mx-auto lg:w-2/3">
+    <div className="mx-auto flex w-11/12 flex-col gap-8 md:w-2/3">
       <div className="flex flex-col gap-6 md:flex-row">
         <div className="flex flex-1 justify-center">
           <Image
@@ -144,7 +143,7 @@ const OfferPage = () => {
             <p>
               <b>ISBN:</b> {offer.isbn ?? "–"}
             </p>
-            {/*{offer.tags && offer.tags.length > 0 && <p><b>Tags:</b> {offer.tags.join(", ")}</p>}*/}
+            {}
           </div>
         </div>
       </div>

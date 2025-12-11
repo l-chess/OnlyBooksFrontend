@@ -24,7 +24,6 @@ const Upload = () => {
   const [publisher, setPublisher] = useState("");
   const [isbn, setIsbn] = useState("");
   const [description, setDescription] = useState("");
-  // const [tags, setTags] = useState("");
 
   const [coverImage, setCoverImage] = useState<File | null>(null);
   const [spineImage, setSpineImage] = useState<File | null>(null);
@@ -72,7 +71,6 @@ const Upload = () => {
     formData.append("publisher", publisher);
     formData.append("isbn", isbn);
     formData.append("description", description);
-    // formData.append("tags", tags);
     if (coverImage) formData.append("coverImage", coverImage);
     if (spineImage) formData.append("spineImage", spineImage);
     additionalImages.forEach((img, i) => {
@@ -247,7 +245,6 @@ const Upload = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        {/*<Input variant="underlined" size="small" placeholder="Tags" value={tags} onChange={e => setTags(e.target.value)} />*/}
       </div>
 
       <div className="mt-8">

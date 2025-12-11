@@ -11,7 +11,6 @@ export type HomepageFilterProps = {
 export const HomepageFilter = ({ offers, onSelectLanguage, onSelectTag }: HomepageFilterProps) => {
   const languages = [...new Set(offers.map((o) => o.language))].sort((a, b) => a.localeCompare(b));
 
-  // Get unique genres instead of tags
   const genres = [...new Set(offers.map((o) => o.genre).filter(Boolean))].sort((a, b) =>
     a.localeCompare(b)
   );
@@ -39,7 +38,7 @@ export const HomepageFilter = ({ offers, onSelectLanguage, onSelectTag }: Homepa
   ];
 
   return (
-    <div className="flex gap-2 overflow-x-scroll">
+    <div className="flex gap-2">
       {/* language filter */}
       <div className="flex-none">
         <Custom
